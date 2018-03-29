@@ -1,87 +1,28 @@
-data: text/html,
-<html>
-    <head>
-        <title>Notepad</title>
-        <link rel="icon" type="image/png" href="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-software/256/Notepad-icon.png">
-        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#text').bind('keyup', function() {
-                    var content = $(this).val();
-                    setTitle(content);
-                    setLineNumber(content);
-                });
-                $('#text').bind('focus click', function() {
-                    var content = $(this).val();
-                    setLineNumber(content);
-                });
-            });
-            function setTitle(content) {
-                var lines = content.split('\n');
-                for (i = 0; i < lines.length; i++) {
-                    if (lines[i].trim().length > 0) {
-                        document.title = lines[i];
-                        return 0;
-                    }
-                }
-                document.title = "Notepad";
-            }
-            function setLineNumber(content) {
-                var lineNumber = content.substr(0, $('#text').prop('selectionStart')).split("\n").length;
-                $('#lineNumber').html(lineNumber);
-            }
-        </script>
-        <style type="text/css">
-            #text {
-                position: absolute;
-                font-family: Menlo;
-                font-size: 12px;
-                width: 100%;
-                height: 100%;
-                border: none;
-                outline: none;
-                padding: 15px;
-                padding-bottom: 35px;
-                background: #EEEEEE;
-            }
-            #ruler {
-                position: absolute;
-                left: 925px;
-                width: 2px;
-                height: 100%;
-                border-right: 1px solid lightgray;
-            }
-            #statusBar {
-                background-image: -ms-linear-gradient(top, #C7C7C7 0%, #8C8E8F 100%);
-                background-image: -moz-linear-gradient(top, #C7C7C7 0%, #8C8E8F 100%);
-                background-image: -o-linear-gradient(top, #C7C7C7 0%, #8C8E8F 100%);
-                background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #C7C7C7), color-stop(1, #8C8E8F));
-                background-image: -webkit-linear-gradient(top, #C7C7C7 0%, #8C8E8F 100%);
-                background-image: linear-gradient(to bottom, #C7C7C7 0%, #8C8E8F 100%);
-                /*background: #C7C7C7;*/
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 23px;
-                border-top: 1px solid #656565;
-            }
-            #statusBarText {
-                font-family: 'Lucida Grande';
-                font-size: 12px;
-                font-weight: bold;
-                color: #393C3E;
-                text-shadow: 1px 1px #CBCBCB;
-                margin-left: 6px;
-                margin-top: 3px;
-            }
-        </style>
-    </head>
-    <body style="margin: 0;">
-        <textarea id="text" autofocus spellcheck="false"></textarea>
-        <div id="ruler"></div>
-        <div id="statusBar">
-            <div id="statusBarText">Line <span id="lineNumber">1</span></div>
-        </div>
-    </body>
-</html>
+data:text/html, <style type="text/css">.e{position:absolute;top:0;right:0;bottom:0;left:0;}</style><div class="e" id="editor"></div><script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><script>var e=ace.edit("editor");e.setTheme("ace/theme/monokai");e.getSession().setMode("ace/mode/ruby");</script>
+<!-- 
+For other language: Instead of  `ace/mode/ruby`, Use
+Markdown -> `ace/mode/markdown`
+Python -> `ace/mode/python`
+C/C++ -> `ace/mode/c_cpp`
+Javscript -> `ace/mode/javascript`
+Java -> `ace/mode/java`
+Scala- -> `ace/mode/scala`
+CoffeeScript -> `ace/mode/coffee`
+and 
+css, html, php, latex, 
+tex, sh, sql, lua, clojure, dart, typescript, go, groovy, json, jsp, less, lisp, 
+lucene, perl, powershell, scss, textile, xml, yaml, xquery, liquid, diff and many more...
+---------------------------------------------------------------------------------------
+For other theme: Instead of  `ace/theme/monokai`, Use
+Eclipse -> ace/theme/eclipse
+GitHub -> ace/theme/github
+TextMate -> ace/theme/textmate
+and 
+ambiance, dawn, chaos, chrome, dreamweaver, xcode, vibrant_ink, solarized_dark, solarized_light, tomorrow, tomorrow_night, tomorrow_night_blue, 
+twilight, tomorrow_night_eighties, pastel_on_dark and many more..
+-->
+
+
+<!-- If you want a instant markdown converter use this : !-->
+data:text/html,<style type="text/css">.e{position:absolute;top:0;right:50%;bottom:0;left:0;} .c{position:absolute;overflow:auto;top:0;right:0;bottom:0;left:50%;}</style><div class="e" id="editor"></div><div class="c"></div><script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script><script> function showResult(e){consoleEl.innerHTML=e}var e=ace.edit("editor");e.setTheme("ace/theme/monokai");e.getSession().setMode("ace/mode/markdown");var consoleEl=document.getElementsByClassName("c")[0];var converter=new Showdown.converter;e.commands.addCommand({name:"markdown",bindKey:{win:"Ctrl-M",mac:"Command-M"},exec:function(t){var n=e.getSession().getMode().$id;if(n=="ace/mode/markdown"){showResult(converter.makeHtml(t.getValue()))}},readOnly:true})</script>
+<!-- Press Ctrl+M or Command+M to convert your markdown code to html :) -->
